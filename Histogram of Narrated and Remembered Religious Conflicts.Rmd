@@ -1,0 +1,47 @@
+---
+title: "Histogram of Narrated/Remembered Religious Conflicts"
+author: "PMB"
+date: "12/11/2021"
+output: html_document
+---
+
+## Histogram of the Narrative Status of Religious Conflicts
+
+First, we set up R Studio.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Next, we load and import the required libraries.
+
+```{r important libraries}
+
+library(gutenbergr)
+library(dplyr)
+library(tidytext)
+library(stringr)
+library(tidyverse)
+library(tm)
+library(ggplot2)
+library(tidyr)
+library(plotly)
+library(ggthemes)
+library(scales)
+```
+
+Next, we import the CSV file containing the required data for the histogram.
+
+```{r importing csv}
+narrativestatus_religiousconflict <-
+read_csv("C:/Users/Pulari/Downloads/narrativestatus_religiousconflicts.csv")
+```
+
+Now that we have our data, it's time to create our visualization! We will be using the code created by Alex Polymath (for reference: [https://www.codementor.io/\@alexander-k/r-word-frequency-in-dataframe-165jgfxxqe\#step-1-create-stopwords-dataframe](https://www.codementor.io/@alexander-k/r-word-frequency-in-dataframe-165jgfxxqe#step-1-create-stopwords-dataframe){.uri}).
+
+```{r histogram}
+ggplot(narrativestatus_religiousconflict, aes(x = narrative_status, y = religious_conflicts, fill= narrative_status )) + geom_col() 
+
+```
+
+As per our analysis of this query in the previous section, most instances of religious conflicts are narrated, and those which are remembered or told follow after a drastic drop in occurrences in descending order.
